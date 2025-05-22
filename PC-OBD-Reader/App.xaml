@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:PC_OBD_Reader"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DropShadowEffect x:Key="ShadowEffect"
+              BlurRadius="15"
+              ShadowDepth="4"
+              Color="#99000000"/>
     </Application.Resources>
 </Application>
+
+    

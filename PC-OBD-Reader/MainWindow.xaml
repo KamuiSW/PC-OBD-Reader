@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PC_OBD_Reader"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="PC OBD Reader" Height="500" Width="900"
+        Background="#FF2C2C2C" WindowStartupLocation="CenterScreen">
+    <DockPanel LastChildFill="True">
+        <!-- Top bar with buttons -->
+        <Border Background="#FF3C3C3C" Padding="10" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="Add Graph"
+                        Click="AddGraph_Click"
+                        Width="120"
+                        Height="35"
+                        Background="#FF4CAF50"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"/>
 
-    </Grid>
+                <ComboBox Name="WorkspaceSelector"
+                          Width="150"
+                          SelectionChanged="WorkspaceSelector_SelectionChanged"
+                          VerticalAlignment="Center"
+                          Margin="0,0,10,0"/>
+
+                <Button Content="Add Workspace"
+                        Click="AddWorkspace_Click"
+                        Width="120"
+                        Height="35"
+                        Background="#FF2196F3"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main content: left graphs, right error codes -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Graph Canvas Area -->
+            <Border Background="#FF1E1E1E" CornerRadius="10" Margin="10" Grid.Column="0">
+                <Canvas Name="GraphCanvas" ClipToBounds="True"/>
+            </Border>
+
+            <!-- Error Codes Panel -->
+            <Border Background="#FF1E1E1E" CornerRadius="10" Margin="10" Grid.Column="1" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Error Codes"
+                               Foreground="White"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,10"
+                               HorizontalAlignment="Center"/>
+                    <ListBox Name="ErrorCodesList"
+                             Background="#FF2C2C2C"
+                             Foreground="White"
+                             BorderThickness="0"
+                             FontSize="14"
+                             />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
 </Window>

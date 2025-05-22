@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="PC_OBD_Reader.ResizableGraphControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Width="200" Height="150">
+    <Border CornerRadius="12"
+            BorderBrush="#FF4CAF50"
+            BorderThickness="2"
+            Background="#FF303030"
+            SnapsToDevicePixels="True"
+            Effect="{DynamicResource ShadowEffect}">
+        <Grid>
+            <TextBlock Text="Graph Panel"
+                       Foreground="White"
+                       FontSize="16"
+                       Margin="10,10,10,0"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+    </Border>
+</UserControl>
