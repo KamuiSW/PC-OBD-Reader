@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "H+dGDP4VuPM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Yimin\\Documents\\GitHub\\PC-OBD-Reader\\PC-OBD-Reader\\PC-OBD-Reader.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Yimin\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.200\\microsoft.net.sdk.compilers.toolset.9.0.200.nupkg.sha512",
+    "C:\\Users\\Yimin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.13\\microsoft.windowsdesktop.app.ref.8.0.13.nupkg.sha512",
+    "C:\\Users\\Yimin\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.13\\microsoft.netcore.app.ref.8.0.13.nupkg.sha512",
+    "C:\\Users\\Yimin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.13\\microsoft.aspnetcore.app.ref.8.0.13.nupkg.sha512",
+    "C:\\Users\\Yimin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.13\\microsoft.netcore.app.host.win-x64.8.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
