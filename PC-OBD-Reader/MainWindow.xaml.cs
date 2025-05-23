@@ -9,7 +9,7 @@ namespace PC_OBD_Reader
     {
         // Workspaces hold lists of graphs
         private Dictionary<string, List<ResizableGraphControl>> workspaces = new Dictionary<string, List<ResizableGraphControl>>();
-        private string currentWorkspace;
+        private string currentWorkspace = string.Empty;
 
         public MainWindow()
         {
@@ -17,7 +17,6 @@ namespace PC_OBD_Reader
 
             AddNewWorkspace("Workspace 1");
             WorkspaceSelector.SelectedIndex = 0;
-
             // Example: Show some error codes initially (you can update this dynamically)
             DisplayErrorCodes(new List<string> { "P0300", "P0420", "P0171" });
         }
@@ -36,7 +35,7 @@ namespace PC_OBD_Reader
             if (string.IsNullOrEmpty(currentWorkspace)) return;
 
             var graph = new ResizableGraphControl();
-            graph.DragCompleted += Graph_DragCompleted;
+            graph.DragCompleted += Graph_DragCompleted!;
             workspaces[currentWorkspace].Add(graph);
 
             RefreshWorkspace();
@@ -56,9 +55,12 @@ namespace PC_OBD_Reader
 
         private void WorkspaceSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (WorkspaceSelector.SelectedItem != null)
+            var cb = sender as ComboBox;
+            if (cb != null && cb.SelectedItem != null)
             {
-                currentWorkspace = WorkspaceSelector.SelectedItem.ToString();
+                currentWorkspace = cb.SelectedItem.ToString() ?? string.Empty;
+                if (WorkspaceSelector.SelectedItem?.ToString() != currentWorkspace)
+                    WorkspaceSelector.SelectedItem = currentWorkspace;
                 RefreshWorkspace();
             }
         }
@@ -71,9 +73,10 @@ namespace PC_OBD_Reader
             WorkspaceSelector.SelectedItem = newName;
         }
 
-        private void Graph_DragCompleted(object sender, EventArgs e)
+        private void Graph_DragCompleted(object? sender, EventArgs e)
         {
-            SnapToNearestSlot(sender as UIElement);
+            if (sender is UIElement element)
+                SnapToNearestSlot(element);
         }
 
         private void SnapToNearestSlot(UIElement dragged)
@@ -199,6 +202,19 @@ namespace PC_OBD_Reader
             {
                 ErrorCodesList.Items.Add(code);
             }
+        }
+
+        // OBD Bluetooth connection button handlers (to be implemented)
+        private void ConnectObdButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Implement Bluetooth OBD connection logic
+            MessageBox.Show("Connect OBD clicked (Bluetooth logic to be implemented)");
+        }
+
+        private void DisconnectObdButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Implement Bluetooth OBD disconnect logic
+            MessageBox.Show("Disconnect OBD clicked (Bluetooth logic to be implemented)");
         }
     }
 }

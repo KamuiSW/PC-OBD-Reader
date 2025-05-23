@@ -1,20 +1,10 @@
 <Project>
-  <PropertyGroup>
-    <UnoPlatformIDE>vscode</UnoPlatformIDE>
-    <UnoPlatformIDEVersion>1.100.2</UnoPlatformIDEVersion>
-    <UnoPlatformExtension>unoplatform.vscode 0.20.4</UnoPlatformExtension>
-    <UnoRemoteControlPort>0</UnoRemoteControlPort>
-    <UnoVSCodeCSharpExtension>ms-dotnettools.csharp 2.76.27</UnoVSCodeCSharpExtension>
-    <UnoVSCodeCSharpDevKitExtension>ms-dotnettools.csdevkit 1.19.63</UnoVSCodeCSharpDevKitExtension>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Update="ResizableGraphControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="ResizableGraphControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+	<PropertyGroup>
+		<UnoPlatformIDE>vscode</UnoPlatformIDE>
+		<UnoPlatformIDEVersion>1.100.2</UnoPlatformIDEVersion>
+		<UnoPlatformExtension>unoplatform.vscode 0.20.4</UnoPlatformExtension>
+		<UnoRemoteControlPort>0</UnoRemoteControlPort>
+		<UnoVSCodeCSharpExtension>ms-dotnettools.csharp 2.76.27</UnoVSCodeCSharpExtension>
+		<UnoVSCodeCSharpDevKitExtension>ms-dotnettools.csdevkit 1.19.63</UnoVSCodeCSharpDevKitExtension>
+	</PropertyGroup>
 </Project>
