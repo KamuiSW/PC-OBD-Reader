@@ -18,23 +18,24 @@
         <Border Background="#FF31363F" Padding="10" DockPanel.Dock="Top" Effect="{StaticResource ShadowEffect}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                 <Button Content="Add Graph"
-                        Click="AddGraph_Click"
-                        Width="120"
-                        Height="35"
-                        Background="#FF4CAF50"
-                        Foreground="White"
-                        FontWeight="SemiBold"
-                        BorderThickness="0"
-                        Margin="0,0,10,0"
-                        Cursor="Hand"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"/>
+                       Click="AddGraph_Click"
+                       Width="120"
+                       Height="35"
+                       Background="#FF4CAF50"
+                       Foreground="White"
+                       FontWeight="SemiBold"
+                       BorderThickness="0"
+                       Margin="0,0,10,0"
+                       Cursor="Hand"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       />
 
                 <ComboBox Name="WorkspaceSelector"
                           Width="150"
                           SelectionChanged="WorkspaceSelector_SelectionChanged"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0" IsDropDownOpen="True"/>
+                          Margin="0,0,10,0" IsDropDownOpen="False" Height="35" FontSize="20" FontFamily="Arial"/>
 
                 <Button Content="Add Workspace"
                         Click="AddWorkspace_Click"
@@ -51,8 +52,9 @@
                 <!-- Bluetooth OBD Connection Controls -->
                 <TextBlock Text="OBD Status: " Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Ellipse Name="ObdStatusIndicator" Width="16" Height="16" Fill="Red" Margin="5,0,5,0" VerticalAlignment="Center"/>
-                <Button Name="ConnectObdButton" Content="Connect OBD" Width="120" Height="35" Background="#FF607D8B" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center" Click="ConnectObdButton_Click"/>
-                <Button Name="DisconnectObdButton" Content="Disconnect" Width="100" Height="35" Background="#FFB71C1C" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center" Margin="5,0,0,0" Click="DisconnectObdButton_Click"/>
+                <Separator Width="20" Opacity="0" Visibility="Hidden"/>
+                <Button Name="ConnectObdButton" Content="Connect OBD" Width="114" Height="35" Background="#FF607D8B" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center" Click="ConnectObdButton_Click"/>
+                <Button Name="DisconnectObdButton" Content="Disconnect" Width="101" Height="35" Background="#FFB71C1C" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center" Margin="5,0,0,0" Click="DisconnectObdButton_Click"/>
             </StackPanel>
         </Border>
 
@@ -79,7 +81,7 @@
                              Foreground="White"
                              BorderThickness="0"
                              FontSize="14"
-                             Height="200"/>
+                             Height="459"/>
                 </StackPanel>
             </Border>
         </Grid>

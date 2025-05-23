@@ -22,3 +22,8 @@ C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-win
 C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-windows\PC-OBD-Reader.genruntimeconfig.cache
 C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-windows\ref\PC-OBD-Reader.dll
 C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-windows\App.baml
+C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\bin\Debug\net8.0-windows\LiveCharts.dll
+C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
+C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-windows\PC-OBD-Reader.csproj.AssemblyReference.cache
+C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\obj\Debug\net8.0-windows\PC-OBD-R.4C27538F.Up2Date
+C:\Users\Yimin\Documents\GitHub\PC-OBD-Reader\PC-OBD-Reader\bin\Debug\net8.0-windows\InTheHand.Net.Bluetooth.dll

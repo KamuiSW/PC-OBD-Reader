@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using InTheHand.Net.Sockets;
+using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Bluetooth.AttributeIds;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace PC_OBD_Reader
 {
@@ -11,6 +19,12 @@ namespace PC_OBD_Reader
         private Dictionary<string, List<ResizableGraphControl>> workspaces = new Dictionary<string, List<ResizableGraphControl>>();
         private string currentWorkspace = string.Empty;
 
+        // Bluetooth-related fields
+        private BluetoothClient bluetoothClient;
+        private BluetoothDeviceInfo[] devices;
+        private DispatcherTimer timer;
+        private const string obdDeviceName = "OBDII";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -19,6 +33,15 @@ namespace PC_OBD_Reader
             WorkspaceSelector.SelectedIndex = 0;
             // Example: Show some error codes initially (you can update this dynamically)
             DisplayErrorCodes(new List<string> { "P0300", "P0420", "P0171" });
+
+            // Initialize Bluetooth client
+            bluetoothClient = new BluetoothClient();
+            // Get paired devices
+            devices = bluetoothClient.DiscoverDevices(255).ToArray();
+            // Initialize timer for live data polling
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
         }
 
         private void AddNewWorkspace(string name)
@@ -207,14 +230,83 @@ namespace PC_OBD_Reader
         // OBD Bluetooth connection button handlers (to be implemented)
         private void ConnectObdButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Implement Bluetooth OBD connection logic
-            MessageBox.Show("Connect OBD clicked (Bluetooth logic to be implemented)");
+            try
+            {
+                // Find the OBDII device among paired devices
+                var obdDevice = devices.FirstOrDefault(d => d.DeviceName.Contains(obdDeviceName));
+                if (obdDevice == null)
+                {
+                    MessageBox.Show("OBDII device not found. Please pair the device first.", "Device Not Found", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Connect to the OBDII device
+                bluetoothClient.Connect(obdDevice.DeviceAddress, BluetoothService.SerialPort);
+                MessageBox.Show("Connected to OBDII device.", "Connection Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Start the timer for live data polling
+                timer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error connecting to OBDII device: {ex.Message}", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DisconnectObdButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Implement Bluetooth OBD disconnect logic
-            MessageBox.Show("Disconnect OBD clicked (Bluetooth logic to be implemented)");
+            try
+            {
+                // Stop the timer if it's running
+                if (timer.IsEnabled)
+                {
+                    timer.Stop();
+                }
+
+                // Disconnect the Bluetooth client
+                bluetoothClient.Dispose();
+                MessageBox.Show("Disconnected from OBDII device.", "Disconnection Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error disconnecting from OBDII device: {ex.Message}", "Disconnection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                // Request and read live data from the OBDII device
+                var stream = bluetoothClient.GetStream();
+                if (stream.CanRead)
+                {
+                    // Example: Read RPM data (PID 0C)
+                    byte[] request = new byte[] { 0x01, 0x0C, 0x00 };
+                    stream.Write(request, 0, request.Length);
+
+                    // Read the response
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+                    // Parse the RPM value from the response
+                    if (bytesRead >= 3 && buffer[0] == 0x41 && buffer[1] == 0x0C)
+                    {
+                        int rpm = ((buffer[2] * 256) + buffer[3]) / 4;
+                        // Update the graph or UI element with the RPM value
+                        // Example: Update a specific graph control in the current workspace
+                        var graph = workspaces[currentWorkspace].FirstOrDefault();
+                        if (graph != null)
+                        {
+                            graph.UpdateDataPoint(rpm);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading live data: {ex.Message}", "Data Read Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
